@@ -1,7 +1,12 @@
 defmodule ImogenWeb.ResizeController do
   use ImogenWeb, :controller
 
+  require Logger
+
   def square_cover(conn, %{"image_url" => image_url, "size" => size}) do
+
+    Logger.info("square_cover: #{image_url} #{size}")
+
     image = Req.get!(image_url)
 
     {:ok, original} = Image.from_binary(image.body)

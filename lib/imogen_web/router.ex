@@ -8,6 +8,6 @@ defmodule ImogenWeb.Router do
   scope "/image", ImogenWeb do
     pipe_through :api
 
-    get "/resize", ResizeController, :show
+    get "/square-cover", ResizeController, :square_cover
   end
 end

@@ -1,11 +1,11 @@
 defmodule ImogenWeb.ResizeController do
   use ImogenWeb, :controller
 
-  def show(conn, %{"image_url" => image_url, "size" => size}) do
+  def square_cover(conn, %{"image_url" => image_url, "size" => size}) do
     image = Req.get!(image_url)
 
     {:ok, original} = Image.from_binary(image.body)
-    {:ok, thumbnail} = Image.thumbnail(original, size, autorotate: true)
+    {:ok, thumbnail} = Image.thumbnail(original, "#{size}x#{size}", fit: :cover, autorotate: true)
 
     thumbnail_path = Briefly.create!(extname: ".jpg")
 
